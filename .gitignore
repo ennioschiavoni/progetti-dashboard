@@ -1,0 +1,7 @@
+*.pyc
+__pycache__/
+.streamlit/secrets.toml
+data/prefs_*.json
+backup/
+*.xlsx
+
