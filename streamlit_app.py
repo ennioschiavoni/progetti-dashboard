@@ -7,7 +7,8 @@ st.set_page_config(
     initial_sidebar_state="collapsed",
 )
 
-if st.secrets.get("auth", {}).get("dev_mode", False):
+from utils.secrets import get_auth as _get_auth
+if _get_auth().get("dev_mode", False):
     st.session_state.logged_in = True
     st.session_state.role = "owner"
     st.session_state.resp_name = "Ennio Schiavoni"
@@ -211,7 +212,7 @@ with c1:
             pwd = st.text_input("Password", type="password", placeholder="••••••••",
                                 label_visibility="collapsed")
             if st.button("Accedi →", use_container_width=True, type="primary", key="btn_login"):
-                sec = st.secrets["auth"]
+                sec = _get_auth()
                 if usr == sec["owner_username"] and pwd == sec["owner_password"]:
                     st.session_state.update(logged_in=True, role="owner", resp_name="Ennio Schiavoni")
                     st.rerun()
