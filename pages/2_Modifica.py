@@ -2,30 +2,42 @@ import streamlit as st
 import pandas as pd
 import sys
 from pathlib import Path
+from st_aggrid import AgGrid, GridOptionsBuilder, GridUpdateMode, JsCode
 
 sys.path.insert(0, str(Path(__file__).parent.parent))
-from utils.data import load_data, save_data, TIPO_OPTIONS, STATO_OPTIONS, PM_EDITABLE_COLS, SORT_COLS
-from utils.prefs import load_prefs
+from utils.data import load_data, save_data, TIPO_OPTIONS, STATO_OPTIONS, SORT_COLS, TIPO_COLORS, STATO_COLORS
+from utils.prefs import load_prefs, load_col_order
 from utils.sidebar import render_sidebar
 
-st.set_page_config(page_title="Modifica Attività", page_icon="✏️", layout="wide")
+st.set_page_config(page_title="Modifica Attività", page_icon="✏️", layout="wide", initial_sidebar_state="expanded")
 
 if not st.session_state.get("logged_in"):
     st.warning("Accesso richiesto.")
     st.switch_page("streamlit_app.py")
 
-role = st.session_state.role
+if st.session_state.get("role") != "owner":
+    st.switch_page("pages/1_Dashboard.py")
+
+role      = st.session_state.role
 resp_name = st.session_state.resp_name
 
 if "col_prefs_modifica" not in st.session_state:
     st.session_state.col_prefs_modifica = load_prefs("modifica")
+if "col_order_modifica" not in st.session_state:
+    st.session_state.col_order_modifica = load_col_order("modifica")
 if "editor_v" not in st.session_state:
     st.session_state.editor_v = 0
-if "dup_rows" not in st.session_state:
-    st.session_state.dup_rows = []
-prefs = st.session_state.col_prefs_modifica
+if "work_override" not in st.session_state:
+    st.session_state.work_override = None
+if "sel_info" not in st.session_state:
+    st.session_state.sel_info = None
+if "pending_action" not in st.session_state:
+    st.session_state.pending_action = None
 
-changed = render_sidebar(role, resp_name, prefs, page="modifica")
+prefs     = st.session_state.col_prefs_modifica
+col_order = st.session_state.col_order_modifica
+
+changed = render_sidebar(role, resp_name, prefs, col_order, page="modifica")
 if changed:
     st.session_state.col_prefs_modifica = prefs
 
@@ -33,172 +45,299 @@ df = load_data()
 if role == "resp":
     df = df[df["Resp.Progetto"] == resp_name]
 
-resp_vals = sorted(df["Resp.Progetto"].dropna().unique().tolist())
+# ── Filtri ────────────────────────────────────────────────────────────────────
+def _reset_mod():
+    for k in ["mod_f_cliente", "mod_f_resp", "mod_f_trpr", "mod_f_tipo"]:
+        st.session_state[k] = []
+    st.session_state.sort_col = "Ordina per Cliente"
+    st.session_state.sort_dir = "Ordina A → Z"
+    st.session_state.sel_info = None
 
-# Filtri
-fc1, fc2, fc3, fc4, fc5 = st.columns(5)
-LBL = '<p style="font-size:13px;margin:0 0 2px 0;font-weight:600">{}</p>'
+fc1, fc2, fc3, fc4, _ = st.columns([2, 2, 2, 2, 4])
 with fc1:
-    st.markdown(LBL.format("Cliente"), unsafe_allow_html=True)
-    clienti = ["Tutti"] + sorted(df["Cliente"].dropna().unique().tolist())
-    sel_cliente = st.selectbox("Cliente", clienti, label_visibility="collapsed")
+    clienti     = sorted(df["Cliente"].dropna().unique().tolist())
+    sel_cliente = st.multiselect("", clienti, placeholder="Filtra per Cliente",
+                                 label_visibility="collapsed", key="mod_f_cliente")
 with fc2:
     if role == "owner":
-        st.markdown(LBL.format("Resp. Progetto"), unsafe_allow_html=True)
-        resps = ["Tutti"] + sorted(df["Resp.Progetto"].dropna().unique().tolist())
-        sel_resp = st.selectbox("Resp. Progetto", resps, label_visibility="collapsed")
+        resps    = sorted(df["Resp.Progetto"].dropna().unique().tolist())
+        sel_resp = st.multiselect("", resps, placeholder="Filtra per Project Manager",
+                                  label_visibility="collapsed", key="mod_f_resp")
     else:
-        sel_resp = resp_name
+        sel_resp = []
 with fc3:
-    st.markdown(LBL.format("Tipo Attività"), unsafe_allow_html=True)
-    tipo_vals = sorted(df["Tipo Attività"].replace("", None).dropna().unique().tolist())
-    sel_tipo = st.selectbox("Tipo Attività", ["Tutti"] + tipo_vals, label_visibility="collapsed")
+    sel_trpr = st.multiselect("", ["TR", "PR"], placeholder="Filtra per TR / PR",
+                               label_visibility="collapsed", key="mod_f_trpr")
 with fc4:
-    st.markdown(LBL.format("Stato Attività"), unsafe_allow_html=True)
-    stato_vals = sorted(df["Stato Attività"].replace("", None).dropna().unique().tolist())
-    sel_stato = st.selectbox("Stato Attività", ["Tutti"] + stato_vals, label_visibility="collapsed")
-with fc5:
-    st.markdown(LBL.format("TR / PR"), unsafe_allow_html=True)
-    sel_trpr = st.selectbox("TR / PR", ["Tutti", "TR", "PR"], label_visibility="collapsed")
+    _tipo_vals = sorted(df["Tipo Attività"].dropna().unique().tolist())
+    sel_tipo = st.multiselect("", _tipo_vals + ["Escludi Presale Cliente"],
+                               placeholder="Filtra per Tipo Attività",
+                               label_visibility="collapsed", key="mod_f_tipo")
 
 filtered = df.copy()
-if sel_cliente != "Tutti":
-    filtered = filtered[filtered["Cliente"] == sel_cliente]
-if role == "owner" and sel_resp != "Tutti":
-    filtered = filtered[filtered["Resp.Progetto"] == sel_resp]
-if sel_tipo != "Tutti":
-    filtered = filtered[filtered["Tipo Attività"] == sel_tipo]
-if sel_stato != "Tutti":
-    filtered = filtered[filtered["Stato Attività"] == sel_stato]
-if sel_trpr != "Tutti":
-    filtered = filtered[filtered["TR_PR"] == sel_trpr]
+if sel_cliente:
+    filtered = filtered[filtered["Cliente"].isin(sel_cliente)]
+if role == "owner" and sel_resp:
+    filtered = filtered[filtered["Resp.Progetto"].isin(sel_resp)]
+if sel_trpr:
+    filtered = filtered[filtered["TR_PR"].isin(sel_trpr)]
+if sel_tipo:
+    if "Escludi Presale Cliente" in sel_tipo:
+        filtered = filtered[filtered["Tipo Attività"] != "Presale Cliente"]
+    else:
+        filtered = filtered[filtered["Tipo Attività"].isin(sel_tipo)]
 
-filtered = filtered.copy()
-filtered["_idx"] = filtered.index
+filtered_index = filtered.index.tolist()
 
-sc1, sc2, sc3, sc4, sc5 = st.columns([2, 1, 3, 1, 1])
+# ── Ordina ────────────────────────────────────────────────────────────────────
+if "sort_col" not in st.session_state:
+    st.session_state.sort_col = "Ordina per Cliente"
+
+sc1, sc2, sc_save, sc_fit, sc_reset, _ = st.columns([2, 2, 1, 1, 1, 5], vertical_alignment="bottom")
 with sc1:
-    sort_by = st.selectbox("Ordina per", list(SORT_COLS.keys()), label_visibility="visible", key="sort_col")
+    sort_by  = st.selectbox("", list(SORT_COLS.keys()), index=None,
+                             placeholder="Ordina per",
+                             label_visibility="collapsed", key="sort_col")
 with sc2:
-    sort_asc = st.selectbox("Ordine", ["↑ A→Z", "↓ Z→A"], label_visibility="visible", key="sort_dir") == "↑ A→Z"
-with sc3:
-    dup_options = ["—"] + [f"{r['Cliente']}  |  {r['Attività']}" for _, r in filtered.iterrows()]
-    dup_sel = st.selectbox("Duplica riga", dup_options, label_visibility="visible", key="dup_sel")
-with sc4:
-    st.markdown("&nbsp;", unsafe_allow_html=True)
-    dup_clicked = st.button("📋 Duplica", use_container_width=True)
-with sc5:
-    st.markdown("&nbsp;", unsafe_allow_html=True)
+    sort_asc = st.selectbox("", ["Ordina A → Z", "Ordina Z → A"],
+                             label_visibility="collapsed", key="sort_dir") == "Ordina A → Z"
+with sc_save:
     save_clicked = st.button("💾 Salva", type="primary", use_container_width=True)
+with sc_fit:
+    if st.button("⇔ Fit", key="mod_fit", use_container_width=True):
+        st.session_state.editor_v += 1
+with sc_reset:
+    st.markdown('<div class="reset-marker" style="display:none"></div>', unsafe_allow_html=True)
+    st.button("✕ Reset", key="mod_reset", on_click=_reset_mod, use_container_width=True)
 
-if dup_clicked and dup_sel != "—":
-    dup_idx = dup_options.index(dup_sel) - 1
-    dup_row = filtered.iloc[dup_idx].copy()
-    dup_row["Attività"] = "COPIA - " + str(dup_row["Attività"])
-    dup_row["_idx"] = -1
-    st.session_state.dup_rows.append(dup_row.to_dict())
-    st.session_state.editor_v += 1
-    st.rerun()
-
-if SORT_COLS[sort_by]:
+if sel_resp:
+    filtered = filtered.copy()
+    filtered["_pl"] = filtered["Tipo Attività"].apply(
+        lambda x: 1 if str(x).startswith("Presale") else 0)
+    filtered = filtered.sort_values(["Cliente", "_pl"], ascending=[True, True], na_position="last")
+    filtered = filtered.drop(columns=["_pl"])
+elif sort_by and SORT_COLS.get(sort_by):
     filtered = filtered.sort_values(SORT_COLS[sort_by], ascending=sort_asc, na_position="last")
 
-# ── Tabella editabile ────────────────────────────────────────────────────────
+# Invalida quando filtro o ordinamento cambiano → forza reset AgGrid
+_fskey = (tuple(sorted(sel_cliente or [])), tuple(sorted(sel_resp or [])),
+          tuple(sorted(sel_trpr)), tuple(sorted(sel_tipo)), sort_by, sort_asc)
+if st.session_state.get("_filter_key") != _fskey:
+    st.session_state._filter_key  = _fskey
+    st.session_state.work_override = None
+    st.session_state.sel_info      = None
+    st.session_state.editor_v     += 1
+
+# ── Barra azioni (sopra la griglia) ──────────────────────────────────────────
+sel_info = st.session_state.sel_info
+if sel_info:
+    st.caption(f"**{sel_info['label']}**")
+    a1, a2, a3, a4, _ = st.columns([2, 2, 2, 2, 4])
+    with a1:
+        if st.button("📋 Duplica sopra", use_container_width=True, key="act_dup_above"):
+            st.session_state.pending_action = "dup_above"
+    with a2:
+        if st.button("📋 Duplica sotto", use_container_width=True, key="act_dup_below"):
+            st.session_state.pending_action = "dup_below"
+    with a3:
+        if st.button("➕ Riga vuota dopo", use_container_width=True, key="act_ins"):
+            st.session_state.pending_action = "insert"
+    with a4:
+        if st.button("🗑️ Elimina riga", use_container_width=True, key="act_del"):
+            st.session_state.pending_action = "delete"
+
+# ── Costruzione work ──────────────────────────────────────────────────────────
 owner_editable = {"Cliente", "Attività", "Tipo Attività", "Stato Attività",
                   "Resp.Progetto", "Stato_Resp", "Note Ennio", "Next Step COM",
                   "TR_PR", "Data Rilascio", "Project Manager", "Owner"}
 pm_editable    = {"Tipo Attività", "Stato Attività", "Stato_Resp", "Note Ennio", "Next Step COM"}
 editable_cols  = owner_editable if role == "owner" else pm_editable
 
-display_cols = ["Tipo_Icon", "Stato_Icon", "Tipo Attività", "Stato Attività", "Cliente", "Resp.Progetto", "Attività",
-                "Stato_Resp", "Note Ennio", "Next Step COM",
-                "TR_PR", "Data Rilascio", "Data SAL", "Project Manager", "Owner", "_idx"]
+display_cols = ["Tipo_Icon", "Stato_Icon",
+                "Stato Attività", "Tipo Attività", "Cliente", "Resp.Progetto",
+                "Attività", "Stato_Resp", "Note Ennio", "Next Step COM",
+                "TR_PR", "Data Rilascio", "Data SAL", "Project Manager", "Owner"]
 
-work = filtered[display_cols].copy()
-for col in ["Tipo Attività", "Stato Attività", "Resp.Progetto", "TR_PR",
-            "Stato_Resp", "Note Ennio", "Next Step COM"]:
-    if col in work.columns:
-        work[col] = work[col].fillna("").astype(str).replace("nan", "")
-work["Data SAL"] = pd.to_datetime(work["Data SAL"], errors="coerce").dt.strftime("%-d/%m/%Y").fillna("")
+if st.session_state.work_override is not None:
+    work = st.session_state.work_override.copy()
+    st.session_state.work_override = None
+    # Ricalcola icone nel caso Tipo/Stato siano stati modificati
+    work["Tipo_Icon"]  = work["Tipo Attività"].map(TIPO_COLORS).fillna("⚪")
+    work["Stato_Icon"] = work["Stato Attività"].map(STATO_COLORS).fillna("⚪")
+else:
+    work = filtered[display_cols].copy().reset_index(drop=True)
+    for col in ["Tipo Attività", "Stato Attività", "Resp.Progetto", "TR_PR",
+                "Stato_Resp", "Note Ennio", "Next Step COM"]:
+        if col in work.columns:
+            work[col] = work[col].fillna("").astype(str).replace("nan", "")
+    work["Data SAL"] = (pd.to_datetime(work["Data SAL"], errors="coerce")
+                        .dt.strftime("%-d/%m/%Y").fillna(""))
 
-if st.session_state.dup_rows:
-    dup_df = pd.DataFrame(st.session_state.dup_rows)[display_cols]
-    work = pd.concat([work, dup_df], ignore_index=True)
+work["_row_idx"] = range(len(work))
+if "_check" not in work.columns:
+    work.insert(0, "_check", "")
 
-# Valori fuori dalle opzioni → svuota cella così risulta editabile
-work["Tipo Attività"] = work["Tipo Attività"].apply(
-    lambda v: v if v in TIPO_OPTIONS else "")
-work["Stato Attività"] = work["Stato Attività"].apply(
-    lambda v: v if v in STATO_OPTIONS else "")
-
-disabled_cols = ["Tipo_Icon", "Stato_Icon", "_idx"] + [
-    c for c in display_cols if c not in editable_cols
-]
-
-# Colonne visibili in base ai checkbox della sidebar
-PREFS_TO_COL = {
-    "Cliente":        "Cliente",
-    "Attività":       "Attività",
-    "Tipo Attività":  "Tipo Attività",
-    "Stato Attività": "Stato Attività",
-    "Resp.":          "Resp.Progetto",
-    "Stato (Resp.)":  "Stato_Resp",
-    "Note Ennio":     "Note Ennio",
-    "Next Step":      "Next Step COM",
-    "TR/PR":          "TR_PR",
-    "Rilascio":       "Data Rilascio",
-    "Data SAL":       "Data SAL",
-    "PM":             "Project Manager",
-    "Owner":          "Owner",
-}
-col_order = ["Tipo_Icon", "Stato_Icon"] + [
-    PREFS_TO_COL[k] for k in PREFS_TO_COL if prefs.get(k, True)
-]
-
-n_rows = len(work)
-grid_h = max(400, n_rows * 35 + 50)
-
-edited = st.data_editor(
-    work,
-    use_container_width=True,
-    hide_index=True,
-    num_rows="dynamic",
-    disabled=disabled_cols,
-    height=grid_h,
-    column_order=col_order,
-    key=f"mod_editor_{st.session_state.editor_v}",
-    column_config={
-        "Tipo_Icon":       st.column_config.TextColumn("Tipo", width=55),
-        "Stato_Icon":      st.column_config.TextColumn("Stato", width=55),
-        "Cliente":         st.column_config.TextColumn("Cliente", width=90),
-        "Attività":        st.column_config.TextColumn("Attività", width=170),
-        "Tipo Attività":   st.column_config.SelectboxColumn(
-                               "Tipo Attività", width=155,
-                               options=TIPO_OPTIONS, required=False),
-        "Stato Attività":  st.column_config.SelectboxColumn(
-                               "Stato Attività", width=180,
-                               options=STATO_OPTIONS, required=False),
-        "Resp.Progetto":   st.column_config.SelectboxColumn(
-                               "Resp.", width=135,
-                               options=resp_vals, required=False),
-        "Stato_Resp":      st.column_config.TextColumn("Stato (Resp.)", width=210),
-        "Note Ennio":      st.column_config.TextColumn("Note Ennio", width=210),
-        "Next Step COM":   st.column_config.TextColumn("Next Step", width=150),
-        "TR_PR":           st.column_config.TextColumn("TR/PR", width=60),
-        "Data Rilascio":   st.column_config.TextColumn("Rilascio", width=90),
-        "Data SAL":        st.column_config.TextColumn("Data SAL", width=90),
-        "Project Manager": st.column_config.TextColumn("PM", width=130),
-        "Owner":           st.column_config.TextColumn("Owner", width=130),
-        "_idx":            None,
+# ── AgGrid ───────────────────────────────────────────────────────────────────
+row_style = JsCode("""
+function(params) {
+    var tipo = params.data ? params.data['Tipo Attività'] : null;
+    if (tipo === 'Presale Cliente' || tipo === 'Presale Prospect') {
+        return { 'color': '#8B0000' };
     }
+    if (tipo === 'Interna') {
+        return { 'color': '#1565C0' };
+    }
+}
+""")
+
+auto_size_js  = JsCode("function(p){ p.api.autoSizeAllColumns(true); }")
+cell_style_js = JsCode("""
+function(params) {
+    if (params.value && String(params.value).indexOf('?') !== -1) {
+        return { 'backgroundColor': '#FFFF99' };
+    }
+}
+""")
+
+gb = GridOptionsBuilder.from_dataframe(work)
+gb.configure_default_column(resizable=True, sortable=False, filter=False,
+                             wrapText=True, autoHeight=False, suppressMenu=True)
+gb.configure_selection("single", use_checkbox=False,
+                        pre_selected_rows=[sel_info["pos"]] if sel_info else [])
+gb.configure_grid_options(rowHeight=28, getRowStyle=row_style, onFirstDataRendered=auto_size_js)
+
+gb.configure_column("_check",    headerName="✏️", width=45, maxWidth=45, minWidth=45,
+                    checkboxSelection=True, editable=False, resizable=False)
+gb.configure_column("_row_idx",  hide=True)
+gb.configure_column("Tipo_Icon",  headerName="Tipo",  minWidth=50, maxWidth=58, editable=False,
+                    cellStyle={"textAlign": "center"})
+gb.configure_column("Stato_Icon", headerName="Stato", minWidth=52, maxWidth=60, editable=False,
+                    cellStyle={"textAlign": "center"})
+
+PREF_TO_FIELD = {
+    "Stato Attività":  "Stato Attività",
+    "Tipo Attività":   "Tipo Attività",
+    "Cliente":         "Cliente",
+    "Project Manager": "Resp.Progetto",
+    "Attività":        "Attività",
+    "Stato (PM)":      "Stato_Resp",
+    "Note Ennio":      "Note Ennio",
+    "Next Step":       "Next Step COM",
+    "TR/PR":           "TR_PR",
+    "Rilascio":        "Data Rilascio",
+    "Data SAL":        "Data SAL",
+    "PM":              "Project Manager",
+    "Owner":           "Owner",
+}
+hidden_fields = {PREF_TO_FIELD[k] for k, v in prefs.items() if not v and k in PREF_TO_FIELD}
+
+col_defs = [
+    ("Stato Attività",  "Stato Attività",  180, dict(cellEditor="agSelectCellEditor",
+                                                      cellEditorParams={"values": STATO_OPTIONS},
+                                                      cellEditorPopup=True)),
+    ("Tipo Attività",   "Tipo Attività",   155, dict(cellEditor="agSelectCellEditor",
+                                                      cellEditorParams={"values": TIPO_OPTIONS},
+                                                      cellEditorPopup=True)),
+    ("Cliente",         "Cliente",          90, {}),
+    ("Resp.Progetto",   "Project Manager", 135, {}),
+    ("Attività",        "Attività",        170, {}),
+    ("Stato_Resp",      "Stato (PM)",      210, {"cellStyle": cell_style_js}),
+    ("Note Ennio",      "Note Ennio",      210, {}),
+    ("Next Step COM",   "Next Step",       150, {}),
+    ("TR_PR",           "TR/PR",            60, {}),
+    ("Data Rilascio",   "Rilascio",         90, {}),
+    ("Data SAL",        "Data SAL",         90, {}),
+    ("Project Manager", "PM",              130, {}),
+    ("Owner",           "Owner",           130, {}),
+]
+for field, header, width, extra in col_defs:
+    gb.configure_column(field, headerName=header, width=width,
+                        editable=field in editable_cols,
+                        hide=field in hidden_fields,
+                        **extra)
+
+grid_response = AgGrid(
+    work,
+    gridOptions=gb.build(),
+    update_mode=GridUpdateMode.VALUE_CHANGED | GridUpdateMode.SELECTION_CHANGED,
+    fit_columns_on_grid_load=False,
+    height=1000,
+    theme="streamlit",
+    reload_data=False,
+    key=f"mod_aggrid_{st.session_state.editor_v}",
+    allow_unsafe_jscode=True,
 )
 
-if save_clicked:
-    other        = df.drop(filtered["_idx"].tolist()).copy()
-    edited_clean = edited.drop(columns=["Tipo_Icon", "Stato_Icon", "_idx"], errors="ignore")
+# ── Aggiorna sel_info ─────────────────────────────────────────────────────────
+sel_rows = grid_response.selected_rows
+has_sel  = sel_rows is not None and (
+    (isinstance(sel_rows, pd.DataFrame) and len(sel_rows) > 0) or
+    (isinstance(sel_rows, list) and len(sel_rows) > 0)
+)
+if has_sel:
+    sel_row = sel_rows.iloc[0] if isinstance(sel_rows, pd.DataFrame) else pd.Series(sel_rows[0])
+    sp      = int(sel_row.get("_row_idx", 0))
+    new_sel = {"pos": sp, "label": f"{sel_row.get('Cliente', '')} — {sel_row.get('Attività', '')}"}
+    if st.session_state.sel_info is None:
+        st.session_state.sel_info      = new_sel
+        st.session_state.work_override = grid_response.data.copy()
+        st.rerun()
+    else:
+        st.session_state.sel_info = new_sel
+else:
+    st.session_state.sel_info = None
+
+# ── Azione pendente ───────────────────────────────────────────────────────────
+edited  = grid_response.data
+pending = st.session_state.pending_action
+
+if pending and sel_info is not None:
+    sp = sel_info["pos"]
+    st.session_state.pending_action = None
+
+    def _make_dup(pos, before=False):
+        dup = edited.iloc[pos].to_dict()
+        dup["Attività"] = "COPIA - " + str(dup.get("Attività", ""))
+        insert_at = pos if before else pos + 1
+        nw = pd.concat([edited.iloc[:insert_at],
+                        pd.DataFrame([dup]),
+                        edited.iloc[insert_at:]], ignore_index=True)
+        nw["_row_idx"] = range(len(nw))
+        return nw
+
+    if pending == "dup_above":
+        nw = _make_dup(sp, before=True)
+    elif pending == "dup_below":
+        nw = _make_dup(sp, before=False)
+    elif pending == "insert":
+        blank = {col: "" for col in edited.columns}
+        nw = pd.concat([edited.iloc[:sp + 1],
+                        pd.DataFrame([blank]),
+                        edited.iloc[sp + 1:]], ignore_index=True)
+        nw["_row_idx"] = range(len(nw))
+    elif pending == "delete":
+        nw = pd.concat([edited.iloc[:sp],
+                        edited.iloc[sp + 1:]], ignore_index=True)
+        nw["_row_idx"] = range(len(nw))
+    else:
+        nw = None
+
+    if nw is not None:
+        st.session_state.work_override = nw
+        st.session_state.sel_info      = None
+        st.session_state.editor_v     += 1
+        st.rerun()
+
+# ── Salvataggio ───────────────────────────────────────────────────────────────
+def _do_save():
+    other        = df.drop(filtered_index, errors="ignore").copy()
+    edited_clean = edited.drop(columns=["_check", "Tipo_Icon", "Stato_Icon", "_row_idx"], errors="ignore")
     merged       = pd.concat([other, edited_clean], ignore_index=True)
     save_data(merged)
-    st.session_state.editor_v += 1
-    st.session_state.dup_rows = []
+    st.session_state.editor_v     += 1
+    st.session_state.work_override = None
     st.success("Salvato!")
     st.rerun()
+
+if save_clicked:
+    _do_save()

@@ -11,14 +11,11 @@ RESP_ALIASES = {
 }
 
 SORT_COLS = {
-    "—":              None,
-    "Cliente":        "Cliente",
-    "Resp. Progetto": "Resp.Progetto",
-    "Attività":       "Attività",
-    "Tipo Attività":  "Tipo Attività",
-    "Stato Attività": "Stato Attività",
-    "Rilascio":       "Data Rilascio",
-    "TR/PR":          "TR_PR",
+    "Ordina per Cliente":         "Cliente",
+    "Ordina per Project Manager": "Resp.Progetto",
+    "Ordina per Tipo Attività":   "Tipo Attività",
+    "Ordina per Stato Attività":  "Stato Attività",
+    "Ordina per TR/PR":           "TR_PR",
 }
 
 PM_EDITABLE_COLS = [
@@ -34,6 +31,7 @@ TIPO_OPTIONS = [
     "Presale Prospect",
     "On-going",
     "Accettata",
+    "Interna",
 ]
 
 STATO_OPTIONS = [
@@ -48,6 +46,7 @@ TIPO_COLORS = {
     "Presale Prospect":  "🔵",
     "On-going":          "🟡",
     "Accettata":         "⚫",
+    "Interna":           "🟢",
 }
 
 STATO_COLORS = {

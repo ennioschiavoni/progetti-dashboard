@@ -44,7 +44,7 @@ with tab1:
         if new_cliente == "— nuovo —":
             new_cliente = st.text_input("Nome cliente", key="nc2")
         new_attivita = st.text_input("Attività")
-        new_resp = st.selectbox("Resp. Progetto", resps, key="nr")
+        new_resp = st.selectbox("Project Manager", resps, key="nr")
     with c2:
         new_stato = st.text_area("Stato", height=80)
         new_note = st.text_area("Note Ennio", height=80)
