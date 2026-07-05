@@ -74,9 +74,10 @@ def _headers() -> dict:
 
 @st.cache_data(ttl=10)
 def load_data() -> pd.DataFrame:
-    resp = requests.get(RAW_URL, headers=_headers(), timeout=15)
+    resp = requests.get(GITHUB_API, headers=_headers(), timeout=15)
     resp.raise_for_status()
-    df = pd.read_csv(io.StringIO(resp.text))
+    content = base64.b64decode(resp.json()["content"]).decode("utf-8")
+    df = pd.read_csv(io.StringIO(content))
 
     df["Cliente"] = df["Cliente"].ffill()
     df["Resp.Progetto"] = df["Resp.Progetto"].replace(RESP_ALIASES)
