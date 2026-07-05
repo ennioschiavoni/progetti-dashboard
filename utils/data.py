@@ -64,7 +64,8 @@ STATO_COLORS = {
 
 def _token() -> str:
     from utils.secrets import get_github_token
-    return get_github_token()
+    t = get_github_token().strip()
+    return t.encode("ascii", errors="ignore").decode("ascii")
 
 
 def _headers() -> dict:
