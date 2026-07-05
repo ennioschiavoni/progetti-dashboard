@@ -6,7 +6,7 @@ MBE,Core Vitals,Enrico Elisei,On-going,,In rilascio produzione,Stato?,,,Progress
 MBE,Schema Org - Breadcrumbs,Daniele Garaffo,On-going,,In rilascio + info da MBE,Stato?,,,Q1 2026,1/07/2026,Federico Ronchini,Marianna Centurione
 MBE,BMS SKY,Daniele Garaffo,On-going,Chiusa,Chiuso,,,, Aprile 2026,1/07/2026,Mattia Lovato,Federico Ronchini
 MBE,Gestione foglio EXCEL,Daniele Garaffo,On-going,,Attivo - Ticketing in carico a Daniele,,,,,1/07/2026,Mattia Lovato,Federico Ronchini
-MBE,Quality Deploy - Accounting,Enrico Elisei,,Critica,Evidenze e richieste del Cliente,"Inviata mail, discusso con Nicola e Lamberto",,,,1/07/2026,Mattia Lovato,Federico Ronchini
+MBE,Quality Deploy - Accounting,Enrico Elisei,Interna,Critica,Evidenze e richieste del Cliente,"Inviata mail, discusso con Nicola e Lamberto",,,,1/07/2026,Mattia Lovato,Federico Ronchini
 MBE,Accessibilità sezione ecommerce ,Enrico Elisei,Presale Cliente,,Valutazione e Stima,,,, ,1/07/2026,Mattia Lovato,Federico Ronchini
 MBE,Mappatura Sito,Enrico Elisei,Presale Cliente,,Lista flussi - Siti dei vari paesi,Stato?,,, ,1/07/2026,Mattia Lovato,Federico Ronchini
 MBE,Chatbot,Enrico Elisei,Presale Cliente,,Rilascio con un partner esterno con suluzione Plug&Play,Script da implementare,,, ,1/07/2026,Mattia Lovato,Federico Ronchini
@@ -21,11 +21,11 @@ TAKE-OFF,Filtri 2026,Enrico Elisei,Presale Cliente,,,Prev.inviato,In trattativa,
 TAKE-OFF,SEO 2026,Enrico Elisei,Presale Cliente,,Richesta di integrazione Garello,Foglio definito con Trask,In trattativa,TR,,7/01/2026,,
 TAKE-OFF,Richiesta modifiche UX-UI ,Enrico Elisei,Presale Cliente,,Stand-by,Budget 2026,,,,7/01/2026,Clara Daghini,Stefano Garello
 TAKE-OFF,Passaggio a Shopify,Ennio-Mirko,Presale Cliente,,,In valutazione strategica,,,,7/01/2026,Stefano Garello,
-GAMMAVILLA,Sito,Enrico Elisei,,,Segnalazioni - Presa in carico e stima,Preventivo?,,,,7/01/2026,Gianluca Scattarella,Giolele Lupi
-GAMMAVILLA,DNS,Enrico Elisei,,,Chiuso,,,,,7/01/2026,,
-GAMMAVILLA,Estensione Develop,Enrico Elisei,,,Chiso,,,,,7/01/2026,Gianluca Scattarella,Giolele Lupi
-GAMMAVILLA,GDPR,Sara Stefanelli,,,GDPR > documento arrivato,,,,,7/01/2026,Gianluca Scattarella,Giolele Lupi
-GAMMAVILLA,Monte Ore,Enrico Elisei,,,Comunicato Esaurimento,,Organizzo SAL - Daniele-Enrico,,,7/01/2026,Gianluca Scattarella,Giolele Lupi
+GAMMAVILLA,Sito,Enrico Elisei,On-going,,Segnalazioni - Presa in carico e stima,Preventivo?,,,,7/01/2026,Gianluca Scattarella,Giolele Lupi
+GAMMAVILLA,DNS,Enrico Elisei,On-going,,Chiuso,,,,,7/01/2026,,
+GAMMAVILLA,Estensione Develop,Enrico Elisei,On-going,,Chiso,,,,,7/01/2026,Gianluca Scattarella,Giolele Lupi
+GAMMAVILLA,GDPR,Sara Stefanelli,On-going,,GDPR > documento arrivato,,,,,7/01/2026,Gianluca Scattarella,Giolele Lupi
+GAMMAVILLA,Monte Ore,Enrico Elisei,On-going,,Comunicato Esaurimento,,Organizzo SAL - Daniele-Enrico,,,7/01/2026,Gianluca Scattarella,Giolele Lupi
 GIORGETTI,Area Riservata,Enrico Elisei,On-going,Critica,Situazione instabile,Proporre integrazione CRM - Mail,,,,1/07/2026,Daria Villa ,Claudia Marocchino
 GIORGETTI,Invio NewsLetter,Enrico Elisei,On-going,Critica,Incident report - Da inviare,Stato?,,,,1/07/2026,Daria Villa ,Claudia Marocchino
 GIORGETTI,Integrazioni CRM,Daniele Garaffo,On-going,,In testing - Fixing?,,,,,1/07/2026,Daria Villa ,Claudia Marocchino
@@ -47,9 +47,9 @@ SALICE,Area Riservata,Daniele Garaffo,On-going,,In lavorazione,Stato?,,,,7/01/20
 SALICE,CRM - Pardot,Daniele Garaffo,On-going,,In lavorazione,Stato?,,,,7/01/2026,Luca Cattaneo,
 SALICE,Mercato Cina,Enrico Elisei,Presale Cliente,,,Salice verifica le reali con i partner cinesi,,PR,,7/01/2026,Luca Cattaneo,
 SALICE,GDPR,Palazzetti-Brancadori,Interna,,,Check con Sara,,,,7/01/2026,Luca Cattaneo,
-MINOTTI,Stato MO,Enrico Elisei,,,In gestione - Mail Cliente su due task arretrati,Stato?,,,,7/01/2026,Filippo Orsi,Emanuela Zonta 
-MINOTTI,WA,Antonio Cazzaro,,,Attività 4-8 ore a MO - Richiesta Filippo,In valutaizone Cliente,,,,7/01/2026,Filippo Orsi,Emanuela Zonta 
-MINOTTI,Mercato Coreano,Enrico Elisei,,,Chiuso,,,,,7/01/2026,Filippo Orsi,Emanuela Zonta 
+MINOTTI,Stato MO,Enrico Elisei,On-going,,In gestione - Mail Cliente su due task arretrati,Stato?,,,,7/01/2026,Filippo Orsi,Emanuela Zonta 
+MINOTTI,WA,Antonio Cazzaro,On-going,,Attività 4-8 ore a MO - Richiesta Filippo,In valutaizone Cliente,,,,7/01/2026,Filippo Orsi,Emanuela Zonta 
+MINOTTI,Mercato Coreano,Enrico Elisei,On-going,,Chiuso,,,,,7/01/2026,Filippo Orsi,Emanuela Zonta 
 MINOTTI,Verifica Performace,Montini,Interna,,Progetto interno - da rivalutare a Gen 2026,,,,,7/01/2026,,
 MINOTTI,Gara Nuovo Sito,Enrico Elisei,Presale Cliente,,GRC-Teams - Pianificare nesx step,Monitoragggio Step,,,,7/01/2026,,
 MINOTTI,CRM,Ennio Schiavoni,Presale Cliente,,,Verifica presa in carico - GRC,,,,7/01/2026,,
@@ -142,8 +142,8 @@ PANARIA,REPLATFORM PORTOGALLO,Mirko Soffia,Presale Cliente,,Standby,In valutazio
 PANARIA,CORPORATE - SITE,Mirko Soffia,Presale Cliente,,Standby,Progetto 2026,,TR,,7/01/2026,,Alessio Pedrazzi
 MONDINI,Privacy,Daniela Polito,On-going,,Chiusa,,,,,7/01/2026,,
 MONDINI,Redesign Sito - Aggiornamento,Daniela Polito,On-going,Critica,Gantt - Mail di check - Poblemi TSU?,Monitoraggio,,,,7/01/2026,Nicolò Mondini,"Nicolò Mondini,Sandro Mondini"
-CALLIGARIS,MO,Daniele Garaffo,,,Consuntivo,,,,,7/01/2026,Guido Gorlato,
-CALLIGARIS,Sito Contract + Corporate,Daniele Garaffo,,,Gestione ok?,,,,,7/01/2026,Guido Gorlato,
+CALLIGARIS,MO,Daniele Garaffo,On-going,,Consuntivo,,,,,7/01/2026,Guido Gorlato,
+CALLIGARIS,Sito Contract + Corporate,Daniele Garaffo,On-going,,Gestione ok?,,,,,7/01/2026,Guido Gorlato,
 ERICKSON,Gestione SEO,,On-going,,Robot TXT,chiesto a Laura per la gestione,,TR,,7/01/2026,,Laura Pulici
 ERICKSON,Gestione CAMPAGNE,Andrea Panebianco,On-going,,,,,,,7/01/2026,,Laura Pulici
 ERICKSON,Gestione WA,Anna Poletti,On-going,,,Attivaizione MO,Ping Laura,,,7/01/2026,,Laura Pulici
@@ -186,7 +186,7 @@ POLICLINICO,AM con Team Dedicato,Matteo Mattioli,Presale Cliente,,Proporre una f
 POLICLINICO,Flusso gestione Alert,Matteo Mattioli,Presale Cliente,,Definire flussi e strumenti - GRC aperta,,Analisi e proposta,,,7/01/2026,Fabio Corrado,Marco Venditti
 TECNOMATIC,Rebranding ,Rita Manni,On-going,Critica,Logo e Brand Identity - Verifiche e mail Cliente,Call proposta - conferma,,,,7/01/2026,Martina Vallese,Valentina Temporelli
 TECNOMATIC,Audit Analytics,Cristiano Erbacci,On-going,,,,,,,7/01/2026,,
-TECNOMATIC,Finanziamento,Ennio Schiavoni,,,,Verifica - Fatturazione come w.academy ok,,,,7/01/2026,Martina Vallese,Valentina Temporelli
+TECNOMATIC,Finanziamento,Ennio Schiavoni,Presale Cliente,,,Verifica - Fatturazione come w.academy ok,,,,7/01/2026,Martina Vallese,Valentina Temporelli
 LINVISIBILE,Audit Analtics + Looker Studio,Luca Ruggeri,On-going,,,,,,,7/01/2026,,
 LEVEL UP,Piattaforma Learning,Oriana Potente,On-going,,Kick-off,,,,,7/01/2026,Eugenia,
 CAME,Sito b2c,Mirko Soffia,Presale Prospect,,,,Feedback da Stefano,TR,,7/01/2026,Pier Molin,Stefano Benvenuti
