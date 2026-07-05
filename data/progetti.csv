@@ -1,0 +1,196 @@
+Cliente,Attività,Resp.Progetto,Tipo Attività,Stato Attività,Stato_Resp,Note Ennio,Next Step COM,TR_PR,Data Rilascio,Data SAL,Project Manager,Owner
+MBE,Redesign UX - Italia,Enrico Elisei,On-going,Verifica PM,In fixing  - Stato?,Valutare richesta di storno di Ronchini,> Lamberto,,,1/07/2026,Mattia Lovato,Federico Ronchini
+MBE,Redesign UX - Mercati aggiuntivi,Enrico Elisei,On-going,Verifica PM,In rilascio pianificato con autorizzazione MBE - Piano ?,Quality deploy e testing pre-pubblicazione,,,,1/07/2026,Mattia Lovato,Federico Ronchini
+MBE,MO - Consuntivo,Daiele Garaffo,On-going,,Invio report entro il 10 del mese,,,,,1/07/2026,Mattia Lovato,Federico Ronchini
+MBE,Core Vitals,Enrico Elisei,On-going,,In rilascio produzione,Stato?,,,Progressivo,1/07/2026,Federico Ronchini,Marianna Centurione
+MBE,Schema Org - Breadcrumbs,Daniele Garaffo,On-going,,In rilascio + info da MBE,Stato?,,,Q1 2026,1/07/2026,Federico Ronchini,Marianna Centurione
+MBE,BMS SKY,Daniele Garaffo,On-going,Chiusa,Chiuso,,,, Aprile 2026,1/07/2026,Mattia Lovato,Federico Ronchini
+MBE,Gestione foglio EXCEL,Daniele Garaffo,On-going,,Attivo - Ticketing in carico a Daniele,,,,,1/07/2026,Mattia Lovato,Federico Ronchini
+MBE,Quality Deploy - Accounting,Enrico Elisei,,Critica,Evidenze e richieste del Cliente,"Inviata mail, discusso con Nicola e Lamberto",,,,1/07/2026,Mattia Lovato,Federico Ronchini
+MBE,Accessibilità sezione ecommerce ,Enrico Elisei,Presale Cliente,,Valutazione e Stima,,,, ,1/07/2026,Mattia Lovato,Federico Ronchini
+MBE,Mappatura Sito,Enrico Elisei,Presale Cliente,,Lista flussi - Siti dei vari paesi,Stato?,,, ,1/07/2026,Mattia Lovato,Federico Ronchini
+MBE,Chatbot,Enrico Elisei,Presale Cliente,,Rilascio con un partner esterno con suluzione Plug&Play,Script da implementare,,, ,1/07/2026,Mattia Lovato,Federico Ronchini
+MBE,Fieramente.biz,Enrico Elisei,Presale Cliente,,,Inviata Rev. 3 con Split - In attesa di Feedback,,TR,,1/07/2026,Mattia Lovato,Federico Ronchini
+MBE,Monitoraggio Flussi,Enrico Elisei,Presale Cliente,,Definire Sensori,A flusso definitivo concordare il  supporto richiesto,,,,1/07/2026,Alessandro Desrumaux,Marianna Centurione
+MBE,Mercato UK,Enrico Elisei,Presale Cliente,,MBE deve fissare il meeting per specifiche - Gennaio 2026,Feedback dopo meeting,,PR,,1/07/2026,Mattia Lovato,Federico Ronchini
+MBE,Alta affidabilità,Enrico Elisei,Presale Cliente,,In valutazione Cliente,Macrostime rilasciate,,TR,,1/07/2026,Alessandro Desrumaux,Marianna Centurione
+TAKE-OFF,Monitoraggio task,Enrico Elisei,On-going,,,Verifica Task,,,,7/01/2026,Clara Daghini,Stefano Garello
+TAKE-OFF,Peventivi a Task ,Enrico Elisei,Presale Cliente,,Previste stime per metà settimana 29 Giu - 3 Lug,,,,,7/01/2026,Clara Daghini,Stefano Garello
+TAKE-OFF,Ambiente di Stage,Enrico Elisei,Presale Cliente,,Next Step?,,Ping,,,7/01/2026,Clara Daghini,Stefano Garello
+TAKE-OFF,Filtri 2026,Enrico Elisei,Presale Cliente,,,Prev.inviato,In trattativa,TR,,7/01/2026,Clara Daghini,Stefano Garello
+TAKE-OFF,SEO 2026,Enrico Elisei,Presale Cliente,,Richesta di integrazione Garello,Foglio definito con Trask,In trattativa,TR,,7/01/2026,,
+TAKE-OFF,Richiesta modifiche UX-UI ,Enrico Elisei,Presale Cliente,,Stand-by,Budget 2026,,,,7/01/2026,Clara Daghini,Stefano Garello
+TAKE-OFF,Passaggio a Shopify,Ennio-Mirko,Presale Cliente,,,In valutazione strategica,,,,7/01/2026,Stefano Garello,
+GAMMAVILLA,Sito,Enrico Elisei,,,Segnalazioni - Presa in carico e stima,Preventivo?,,,,7/01/2026,Gianluca Scattarella,Giolele Lupi
+GAMMAVILLA,DNS,Enrico Elisei,,,Chiuso,,,,,7/01/2026,,
+GAMMAVILLA,Estensione Develop,Enrico Elisei,,,Chiso,,,,,7/01/2026,Gianluca Scattarella,Giolele Lupi
+GAMMAVILLA,GDPR,Sara Stefanelli,,,GDPR > documento arrivato,,,,,7/01/2026,Gianluca Scattarella,Giolele Lupi
+GAMMAVILLA,Monte Ore,Enrico Elisei,,,Comunicato Esaurimento,,Organizzo SAL - Daniele-Enrico,,,7/01/2026,Gianluca Scattarella,Giolele Lupi
+GIORGETTI,Area Riservata,Enrico Elisei,On-going,Critica,Situazione instabile,Proporre integrazione CRM - Mail,,,,1/07/2026,Daria Villa ,Claudia Marocchino
+GIORGETTI,Invio NewsLetter,Enrico Elisei,On-going,Critica,Incident report - Da inviare,Stato?,,,,1/07/2026,Daria Villa ,Claudia Marocchino
+GIORGETTI,Integrazioni CRM,Daniele Garaffo,On-going,,In testing - Fixing?,,,,,1/07/2026,Daria Villa ,Claudia Marocchino
+GIORGETTI,MO,Enrico Elisei,On-going,,Segnalazione sforato?,Inviata mail al PM,,,,1/07/2026,Daria Villa ,Claudia Marocchino
+GIORGETTI,SEO - Evolutive,Luca Della Martera,On-going,,Confermato - on-going,Verifica rilascio,,,,1/07/2026,Luigi Camerino,Claudia Marocchino
+GIORGETTI,SEO Pinterest,Aureliana Corea,On-going,,Attivo - Kick-off,Verifica rilascio,,,,1/07/2026,Luigi Camerino,
+GIORGETTI,ADV 2026 + 2 mercati,Alessio Carbonari,On-going,,Attivo,Verifica on going con 2 mercati aggiuntivi,,,,1/07/2026,Luigi Camerino,
+GIORGETTI,Area Riservata - Int. Showefy,Enrico Elisei,Presale Cliente,,,Preventivo inviato Marzo 2026,,TR,,1/07/2026,Luigi Camerino,Claudia Marocchino
+GIORGETTI,ZENDESK,Mirko Soffia,Presale Cliente,,Se solo porting - 4/8 ore da MO,Preventivo inviato il 17/11,,TR,,1/07/2026,Luigi Camerino,Claudia Marocchino
+GIORGETTI,DB Newletter su CRM,Enrico Elisei,Interna,Critica,Stima PM 2 gg - a carico WS,Da proporre - Ennio,,,,1/07/2026,Yuri,
+GIORGETTI,Formazione Area Riservata,Enrico Elisei,Interna,Critica,Da pianificare con il Cliente,Valutazione interna e Budget,,,,1/07/2026,Yuri,
+GIORGETTI,Verifica BOM Extra WS,Montini,Interna,Critica,,Valutazione interna e Budget,,,,1/07/2026,Yuri,
+BKT,MO,Enrico Elisei,On-going,,Richeste del 2 Luglio - Gestione a Task - Comunicato?,,,,,7/01/2026,Caterina Orioli,
+BKT,Gestione canoni,Anna Staffolani,,,Gestione Anna,,,,,7/01/2026,Caterina Orioli,
+SALICE,Redesign,Enrico Elisei,On-going,,Rilasciato - Modifiche Data Entry - Termine Garanzia,Chiuso,,,,7/01/2026,Luca Cattaneo,
+SALICE,Redesign - Fase2,Enrico Elisei,On-going,,Verifica ultime modifiche,Ping Mail Cliente comunica  non ha tempo,,,,7/01/2026,Luca Cattaneo,
+SALICE,SSO,Daniele Garaffo,On-going,,In lavorazione,Stato?,,,,7/01/2026,Luca Cattaneo,
+SALICE,Area Riservata,Daniele Garaffo,On-going,,In lavorazione,Stato?,,,,7/01/2026,Luca Cattaneo,
+SALICE,CRM - Pardot,Daniele Garaffo,On-going,,In lavorazione,Stato?,,,,7/01/2026,Luca Cattaneo,
+SALICE,Mercato Cina,Enrico Elisei,Presale Cliente,,,Salice verifica le reali con i partner cinesi,,PR,,7/01/2026,Luca Cattaneo,
+SALICE,GDPR,Palazzetti-Brancadori,Interna,,,Check con Sara,,,,7/01/2026,Luca Cattaneo,
+MINOTTI,Stato MO,Enrico Elisei,,,In gestione - Mail Cliente su due task arretrati,Stato?,,,,7/01/2026,Filippo Orsi,Emanuela Zonta 
+MINOTTI,WA,Antonio Cazzaro,,,Attività 4-8 ore a MO - Richiesta Filippo,In valutaizone Cliente,,,,7/01/2026,Filippo Orsi,Emanuela Zonta 
+MINOTTI,Mercato Coreano,Enrico Elisei,,,Chiuso,,,,,7/01/2026,Filippo Orsi,Emanuela Zonta 
+MINOTTI,Verifica Performace,Montini,Interna,,Progetto interno - da rivalutare a Gen 2026,,,,,7/01/2026,,
+MINOTTI,Gara Nuovo Sito,Enrico Elisei,Presale Cliente,,GRC-Teams - Pianificare nesx step,Monitoragggio Step,,,,7/01/2026,,
+MINOTTI,CRM,Ennio Schiavoni,Presale Cliente,,,Verifica presa in carico - GRC,,,,7/01/2026,,
+PETTENON,Richieste ,Rita Manni,On-going,,Gestione a MO,,,,,7/01/2026,Andrea Pinton,
+MITSUBISHI,Store locator,Rita Manni,On-going,,Tuning  a MO...,,,,,7/01/2026,Annalyda Di Giacomo,Stefano Negri
+MITSUBISHI,Thron-X,Rita Manni,On-going,,On going,,,,,7/01/2026,Annalyda Di Giacomo,Stefano Negri
+MITSUBISHI,Area documentale,Rita Manni,On-going,,Relazione con Thron-X,,,,,7/01/2026,Annalyda Di Giacomo,Stefano Negri
+MITSUBISHI,Area Riservata,Rita Manni,On-going,,In produzione - Accessi SSO,,,,,7/01/2026,Annalyda Di Giacomo,Stefano Negri
+MITSUBISHI,Stato MO,Rita Manni,On-going,,Attivo in gestione,,,,,7/01/2026,Annalyda Di Giacomo,Stefano Negri
+MITSUBISHI,Siti associati,Rita Manni,On-going,,Porposte grafiche - Sito di partenza ad Aprile,,Ping!,,,7/01/2026,Annalyda Di Giacomo,Stefano Negri
+MITSUBISHI,Comparatore prodotto,Rita Manni,Presale Cliente,,Standby,Voce compresa nel vecchi contratto…,,,,7/01/2026,Annalyda Di Giacomo,Stefano Negri
+DEXELANCE,MO,Rita Manni,On-going,,In gestione,,,,,7/01/2026,Virginia Rossi,
+DEXELANCE,Pagina aggiuntiva,Rita Manni,On-going,,In gestione,Rilasciata?,,,,7/01/2026,Virginia Rossi,
+GS1,Redesign Cantiere 2,Oriana Potente,On-going,,Meeting,,,,,7/01/2026,Laura Perrone,
+GS1,Mail di benvenuto 2026 ,Oriana Potente,On-going,,In pianificazione,,,,,7/01/2026,Laura Perrone,
+GS1,Mail di benvenuto 2025 - Adeg.,Oriana Potente,On-going,,,Peventivo inviato,,,,7/01/2026,Laura Perrone,
+GS1,AI Assistant - Academy,Claudio Tonti,Presale Cliente,,,Peventivo inviato,,PR,,7/01/2026,Laura Perrone,
+GS1,Accessibilità rimediazione,Oriana Potente,Presale Cliente,,Foglio XLS da Laura - Pianificata attività con WD e FE,Invio preventivo,,PR,,7/01/2026,Laura Perrone,
+GS1,"Contenuti su area ""Settori""",Oriana Potente,Presale Cliente,,Breif da Laura - Call da fissare,Invio preventivo,,,,7/01/2026,Laura Perrone,
+GS1,Formazione personale,w-academy,Presale Cliente,,,Progetto 2026,Da annullare?,,,7/01/2026,Laura Perrone,
+GIVI,Sito,Elena Centin,On-going,,Gantt attivo e milestone,,,,,7/01/2026,Francesco Fanetti,Domenica Tonidandel
+GIVI,"""Per la tua Moto + Configuratore""",Elena Centin,On-going,,Gantt attivo e milestone,,,,,7/01/2026,Francesco Fanetti,Domenica Tonidandel
+GIVI,AI ASSISTANT,Elena Centin,On-going,,Gantt attivo e milestone,,,,,7/01/2026,Francesco Fanetti,Domenica Tonidandel
+GIVI,CRM,Elena Centin,On-going,,Gantt attivo e milestone,,,,,7/01/2026,Francesco Fanetti,Domenica Tonidandel
+GIVI,Icone ,Elena Centin,On-going,,In Lavorazione,,,,,7/01/2026,Francesco Fanetti,Domenica Tonidandel
+GIVI,Microvideo,Elena Centin,On-going,,In Lavorazione,,,,,7/01/2026,Francesco Fanetti,Domenica Tonidandel
+GIVI,Moduli aggiuntivi,Elena Centin,On-going,,In Lavorazione,,,,,7/01/2026,Francesco Fanetti,Domenica Tonidandel
+GIVI,Integrazione e-commerce,Elena Centin,On-going,,,Rinvito 2027,,,,7/01/2026,Francesco Fanetti,Domenica Tonidandel
+GIVI,APP x Fiere,Elena Centin,Presale Cliente,,Verifca e conferma preventivo - Funzioni aggiuntve?,Preventivo inviato - Da confermare,,TR,,7/01/2026,Domenica Tonidandel,
+GIVI,Compani AI,Claudio Tonti,Presale Cliente,,,Verifica con IT - Interesse domenica,,,,7/01/2026,Domenica Tonidandel,
+GIVI,Kappa,Mirko Soffia,Presale Cliente,,,Stand-by,,,,7/01/2026,Domenica Tonidandel,
+PIL,Progetto accessibilità,Elena Centin,On-going,,Chiuso,,,,,7/01/2026,Ariejta Lesaj,Gewiss
+PIL,Progetto redesign 2025,Elena Centin,On-going,,Pubblicato in produzione - In testing e caricamento contenuti,Verifica con Elena,,,,7/01/2026,Ariejta Lesaj,Gewiss
+PIL,Landing Page con layout builder,Elena Centin,On-going,,Pubblicato in produzione - In testing e caricamento contenuti,Verifica con Elena,,,,7/01/2026,Ariejta Lesaj,Diego
+PIL,Monte Ore,Elena Centin,On-going,,Confermato,Verifica con Elena,,,,7/01/2026,Ariejta Lesaj,Gewiss
+PIL,Integrazione Akeneo - Analisi,Elena Centin,On-going,,Consegnata in attesa Gewiss - Pianificazione anticipata,Portare su progetto,,,,7/01/2026,Ariejta Lesaj,Gewiss
+PIL,Passaggio Server,Elena Centin,On-going,,Call con Cliente - Porting entro Aprile,,,,,7/01/2026,Ariejta Lesaj,Gewiss
+PIL,Integrazione Binder,Elena Centin,On-going,,Confermata - Da pianificare,,,,,7/01/2026,Ariejta Lesaj,Gewiss
+PIL,Integrazione Akeneo,Elena Centin,On-going,,Confermata - Da pianificare,,,TR,,7/01/2026,Ariejta Lesaj,Gewiss
+PIL,Integrazione lingue,Elena Centin,Presale Cliente,,,Preventivo inviato,,TR,,7/01/2026,Ariejta Lesaj,Gewiss
+PIL,Implementazione Pagine USA,Elena Centin,Presale Cliente,,,Preventivo inviato,,TR,,7/01/2026,Costanza Tagliapietra,Gewiss
+PIL,Impelementazione Attribito,Elena Centin,Presale Cliente,,,Preventivo inviato,,TR,,7/01/2026,Costanza Tagliapietra,Gewiss
+PIL,Redesign Light Performer,Elena Centin,Presale Cliente,,,Feedback Costanza,Ping Costanza,TR,,7/01/2026,Costanza Tagliapietra,Gewiss
+HB CYCLE,Pubblicazione Sito,Elena Centin,On-going,,Pubblicazione - In tuning + piccole evolutive,Verificare con Elena,,,,7/01/2026,Joshua Riddle,Board USA
+HB CYCLE,Verifca su Sito,Elena Centin,On-going,,Attività a MO  - Task - da pianificare,,,,,7/01/2026,,
+HB CYCLE,SEO AI,Ennio Schiavoni,Presale Cliente,,Presale,Preventivo inviato il 124/09,Ping generale,,,7/01/2026,Joshua Riddle,Board USA
+SIPCAM ITALIA ,Sito evolutive,Daniela Polito,On-going,,Task gestiti,,,,,7/01/2026,Valeria Spatafora,Luca Veronesi
+SIPCAM ITALIA ,Social,Martina De Luca,On-going,,On-going,Monitoraggio,,,,7/01/2026,Valeria Spatafora,Luca Veronesi
+SIPCAM ITALIA ,SEO,Luca Della Martera,On-going,,On-going,Monitoraggio > Mail inviata,,,,7/01/2026,Valeria Spatafora,Luca Veronesi
+SIPCAM ITALIA ,Campagne,Varena Guidi,On-going,,Ipotesi sospensione,,,,,7/01/2026,Valeria Spatafora,Luca Veronesi
+SIPCAM OXON,Mercato Cile,Daniela Polito,On-going,,Pubblicato,,,,,7/01/2026,Velentina De Giorgi,Daniele Fantin
+SIPCAM OXON,Mercato Portogallo ,Daniela Polito,On-going,,Pubblicato,,,,,7/01/2026,Velentina De Giorgi,Daniele Fantini
+SIPCAM OXON,Mercato Paraguay,Daniela Polito,On-going,,In pianificazione ?,,,,,7/01/2026,Velentina De Giorgi,Daniele Fantini
+SIPCAM OXON,Mercati Inagra,Daniela Polito,On-going,,Da pianificare - Invio Gantt!,,,,,7/01/2026,Velentina De Giorgi,Daniele Fantini
+SIPCAM OXON,Nuova Landing,Daniela Polito,On-going,,Pubblicata,,,,,7/01/2026,Velentina De Giorgi,Daniele Fantini
+SIPCAM OXON,Redesign,Daniela Polito,On-going,,Gantt Ok - Pubblicato 80° - Pianificato per pubblicre al 1 Luglio,,,,,7/01/2026,Velentina De Giorgi,Daniele Fantini
+SIPCAM OXON,Lingua IT-ES + SEO + WA,Daniela Polito,On-going,,Gantt - SEO-WA Luca Della Martera + Ruggeri,,,,,7/01/2026,Velentina De Giorgi,Daniele Fantini
+SIPCAM OXON,Sipcam OXON - Siti associati ,Daniela Polito,On-going,,Richiesta Valentina?,,Call,,,7/01/2026,Velentina De Giorgi,Daniele Fantini
+SIPCAM OXON,Sipcam OXON - Filiali,Daniela Polito,On-going,,Servizio di gestione task delle filiali,Inviata proposta AM applicativa,,,,7/01/2026,Velentina De Giorgi,Daniele Fantini
+SIPCAM OXON,Sipcam OXON - Duplicazione ,Daniela Polito,On-going,,Richesta Valentina - Call da pianificare,Call,Call,,,7/01/2026,Velentina De Giorgi,Daniele Fantini
+SIPCAM OXON,Ottimizzazione back-end,Montini - Polito,Interna,,Ottimizzazione lista Colture - da Pianificare,,,,,7/01/2026,Velentina De Giorgi,Daniele Fantini
+SIPCAM OXON,GDPR,Palazzetti-Brancadori,Interna,,Ping Valentina > Sara?,Check con Sara,,,,7/01/2026,Velentina De Giorgi,Daniele Fantini
+FONDITAL,MO e task aperti,Daniele Garaffo,On-going,,,Attività gestita,,,,7/01/2026,Alice Perrone,
+FONDITAL,Pagina Gazzelle,Daniele Garaffo,On-going,,A MO,A MO,,,,7/01/2026,Alice Perrone,
+FONDITAL,Landing Gazzelle,Daniele Garaffo,Presale Cliente,,,In valutazione,,TR,,7/01/2026,Alice Perrone,
+FONDITAL,Calcolo termico ,Daniele Garaffo,Presale Cliente,,,In valutazione,,TR,,7/01/2026,Alice Perrone,
+FONDITAL,Upgrade Hosting - GDPR,Daniele Garaffo,Presale Cliente,,Presale,In valutazione,,TR,,7/01/2026,Alice Perrone,
+INARCASSA,Progetto accessibilità,Daniele Garaffo,On-going,,Rilasciato,,,,,7/01/2026,Lorenzo Cignini,
+INARCASSA,Task,Daniele Garaffo,On-going,,In gestione,,,,,7/01/2026,Lorenzo Cignini,
+INARCASSA,Rinnovo MO,Daniele Garaffo,Presale Cliente,Critica,Comunicazione sforamento - PM,,Ping,TR,,7/01/2026,Lorenzo Cignini,
+PIAZZETTA,Gestione a Task,Rita Manni,On-going,,,,,,,7/01/2026,,
+PIAZZETTA,Adeguamenti Drupal,Rita Manni,On-going,,In pianificazione,Accettato,,,,7/01/2026,,
+KEMOM,Attività,Daniele Garaffo,On-going,,Task a cosuntivo - Chiuso?,,,,,7/01/2026,Ario Scarfi,Pierpaolo Bironi
+KEMOM,GDPR,Palazzetti-Brancadori,Interna,,,Check con Sara,,,,7/01/2026,Ario Scarfi,
+THUN,THUN.COM,Nicola Ravagnan ,On-going,,Gestione AM confermata,,,,,7/01/2026,Denise Jonà,Samuele Glorioso
+THUN,THUN COROPORATE,Nicola Ravagnan ,On-going,,Pacchetto 300 ore,Call per fare il punto sulle attività,,,,7/01/2026,Denise Jonà,Samuele Glorioso
+THUN,TABLEWARE,Nicola Ravagnan ,On-going,,Pacchetto 300 ore,A momento in stand-by,,,,7/01/2026,Jarno Barni,Samuele Balzani
+THUN,Tableware Shopify,Presale,Presale Cliente,,Preventivo Ordini,In valutaizone,,,,7/01/2026,Jarno Barni,Samuele Balzani
+THUN,THUN.com,Presale,Presale Cliente,,Patch security e release 2026,In valutazione Cliente,,,,7/01/2026,Jarno Barni,Samuele Balzani
+THUN,THUN.com - B2C,GARA 2026,Presale Cliente,,,Ultimo Step prima settimana Luglio,,TR,,7/01/2026,Samuele Glorioso,
+COPERNICO,Copernico 2.0 ,Oriana Potente,On-going,Critica,Verifica Pianificazione Gantt - Rilascio - Aggiornamento Gantt,,,,,7/01/2026,Giovanni Castoldi,Corrado Facco
+PANARIA,PANARIA ,Matteo Mattioli,On-going,,Task a MO - in gestione,,,,,7/01/2026,Zeno Manelli,Alessio Pedrazzi
+PANARIA,COTTO,Matteo Mattioli,On-going,,Task a MO - in gestione,Rinnovo?,,,,7/01/2026,Zeno Manelli,Alessio Pedrazzi
+PANARIA,LEA,Matteo Mattioli,On-going,,Task a MO - in gestione,,,,,7/01/2026,Zeno Manelli,Alessio Pedrazzi
+PANARIA,SEO,Varena Guidi,On-going,,In gestione,,,,,7/01/2026,,
+PANARIA,LINK BUILDING,Varena Guidi,On-going,,In gestione,,,,,7/01/2026,,
+PANARIA,Sezione Racconti,Matteo Mattioli,Presale Cliente,,Preventivo in lavorazione,Rilascio prima sett Luglio,,PR,,7/01/2026,,
+PANARIA,REPLATFORM SITI BRAND,Mirko Soffia,Presale Cliente,,Standby,In valutazione,,TR,,7/01/2026,,Alessio Pedrazzi
+PANARIA,REPLATFORM PORTOGALLO,Mirko Soffia,Presale Cliente,,Standby,In valutazione,,TR,,7/01/2026,,
+PANARIA,CORPORATE - SITE,Mirko Soffia,Presale Cliente,,Standby,Progetto 2026,,TR,,7/01/2026,,Alessio Pedrazzi
+MONDINI,Privacy,Daniela Polito,On-going,,Chiusa,,,,,7/01/2026,,
+MONDINI,Redesign Sito - Aggiornamento,Daniela Polito,On-going,Critica,Gantt - Mail di check - Poblemi TSU?,Monitoraggio,,,,7/01/2026,Nicolò Mondini,"Nicolò Mondini,Sandro Mondini"
+CALLIGARIS,MO,Daniele Garaffo,,,Consuntivo,,,,,7/01/2026,Guido Gorlato,
+CALLIGARIS,Sito Contract + Corporate,Daniele Garaffo,,,Gestione ok?,,,,,7/01/2026,Guido Gorlato,
+ERICKSON,Gestione SEO,,On-going,,Robot TXT,chiesto a Laura per la gestione,,TR,,7/01/2026,,Laura Pulici
+ERICKSON,Gestione CAMPAGNE,Andrea Panebianco,On-going,,,,,,,7/01/2026,,Laura Pulici
+ERICKSON,Gestione WA,Anna Poletti,On-going,,,Attivaizione MO,Ping Laura,,,7/01/2026,,Laura Pulici
+ERICKSON,Esperienza customizzata,? ,Presale Cliente,,,Da capire chi coinvolgere,Ping Laura,,,7/01/2026,,Laura Pulici
+PROGETTO APPALTI,Stato avanzamento AI,Dante Sperendio,On-going,,Tuning performance,Chiuso,Verifica con Dante,,,7/01/2026,Christina Lovato,
+BASSANI,Stato avanzamento AI,Dante Sperendio,On-going,,In attesa di feedback Cliente,Check Cliente - Non risponde,,,,7/01/2026,Marco Stefanuto,Michele Cazzanti
+AGRICOR,Attività Sito,Nicola Cecconi,On-going,,Il sito risulta soddisfacente.,,,,,7/01/2026,Alessandro Cavalli,
+AGRICOR,Maintenance Back-end,Nicola Cecconi,On-going,,,,,,,7/01/2026,Alessandro Cavalli,Augusto Migliori
+MUSE,Attività Sito,Enrico Elisei,On-going,,Ore disponibili da contratto azzerate - Comunicate,Ore azzerate,,,,7/01/2026,,
+MUSE,Maintenance Back-end,Enrico Elisei,On-going,,,Scadenza 31/12/2026,,,,7/01/2026,,
+MIAL,Richiesta attività ,Daniele Garaffo,On-going,,Pregetto a consuntivo rilasciato,,,,,7/01/2026,,
+ALCEDO,Richiesta attività ,Daniela Polito,On-going,,Pregetto a consuntivo - Chiuso?,,,,,7/01/2026,,
+STUDIO BALDI,SEO,Luca Della Martera,On-going,,Pregetto a consuntivo,Verifica,,,,7/01/2026,,Maurizio Baldi 
+CERUSCOLO,MO,Rita Manni,On-going,,Task aperto - ?,,,,,7/01/2026,,
+CERUSCOLO,Digital Marketing,,On-going,,Servizi non erogati interrotti,,,,,7/01/2026,,
+OVS UPIM,Digital Strategy on-going,Alex Pazzaglia,On-going,,In gestione - Attività di coordinamento,,,,,7/01/2026,Isabella Martoni,
+OVS UPIM,Refresh Sito,Alex Pazzaglia,On-going,,,Richiedere Call specifica,,,,7/01/2026,Isabella Martoni,
+OVS UPIM,Social  Content,Silvia Locci,On-going,,,,,,,7/01/2026,Isabella Martoni,
+OVS UPIM,ADV - Croff,Matteo Erodi,On-going,,,,,,,7/01/2026,Isabella Martoni,
+OVS UPIM,CRO - Croff,Cristina Giorgetti,On-going,,,Stato?,,,,7/01/2026,Isabella Martoni,
+OVS UPIM,AI Assistant,Dante Sperindio,On-going,,Verifica documento Dante GDPR,Ping Cliente,,,,7/01/2026,Isabella Martoni,
+OVS UPIM,Influencer Marketing,Alex Pazzaglia,Presale Cliente,,Rilascio Preventivo,Preventivo,,PR,,7/01/2026,Isabella Martoni,
+OVS UPIM,Redesign Home page,Alex Pazzaglia,Presale Cliente,,In attesa specifiche Cliente,,,PR,,7/01/2026,Isabella Martoni,
+POLICLINICO,Portale Donatori,Matteo Mattioli,On-going,,Maintenance FE-BE,,,,,7/01/2026,Fabio Corrado,Marco Venditti
+POLICLINICO,Sito Policlinico,Matteo Mattioli,On-going,,Maintenance FE-BE - AM 8x5,,,,,7/01/2026,Fabio Corrado,Marco Venditti
+POLICLINICO,My Hospital,Matteo Mattioli,On-going,,Maintenance FE-BE - AM 8x5,,,,,7/01/2026,Fabio Corrado,Marco Venditti
+POLICLINICO,TOTEM Garanzia HW-SW ,Matteo Mattioli,On-going,,Estensione Garanzia + Assistenza Software,,,,,7/01/2026,Fabio Corrado,Marco Venditti
+POLICLINICO,MO (500 Ore),Matteo Mattioli,On-going,,In gestione,,,,,7/01/2026,Fabio Corrado,Marco Venditti
+POLICLINICO,C24 - Cartelle,Matteo Mattioli,On-going,,Stand-by,,,,,7/01/2026,Fabio Corrado,Marco Venditti
+POLICLINICO,C23 - Assicurati,Matteo Mattioli,On-going,,Stand-by,,,,,7/01/2026,Fabio Corrado,Marco Venditti
+POLICLINICO,C22-1 - Totem,Matteo Mattioli,On-going,,,,,,,7/01/2026,Fabio Corrado,Marco Venditti
+POLICLINICO,C22-2 - Totem,Matteo Mattioli,On-going,,,,,,,7/01/2026,Fabio Corrado,Marco Venditti
+POLICLINICO,Robot TXT,Matteo Mattioli,On-going,,Corrado - Verifica,,,,,7/01/2026,Fabio Corrado,Marco Venditti
+POLICLINICO,Totem - Review,Matteo Mattioli,On-going,,,,,,,7/01/2026,Fabio Corrado,Marco Venditti
+POLICLINICO,Incident Report,Filippo Brancadori,Interna,,,,Montoring DPO,,,7/01/2026,,
+POLICLINICO,AUDIT,Filippo Brancadori,Interna,,In pianificaizone,,,,,7/01/2026,Fabio Corrado,Marco Venditti
+POLICLINICO,Estensione Totem,Matteo Mattioli,Presale Cliente,,,Preventivo inviato il 2 Luglio,Monitoring,TR,,7/01/2026,Fabio Corrado,Marco Venditti
+POLICLINICO,APP Nativa,Matteo Mattioli,Presale Cliente,,Confermata fattilità - Standby,Monitoraggio e preventivo,,,,7/01/2026,Fabio Corrado,Marco Venditti
+POLICLINICO,AM con Team Dedicato,Matteo Mattioli,Presale Cliente,,Proporre una formula con 2 gg settimana GRC apeta,Proporre una formula con 2 gg sett. + 24/7,Analisi e proposta,,,7/01/2026,Fabio Corrado,Marco Venditti
+POLICLINICO,Flusso gestione Alert,Matteo Mattioli,Presale Cliente,,Definire flussi e strumenti - GRC aperta,,Analisi e proposta,,,7/01/2026,Fabio Corrado,Marco Venditti
+TECNOMATIC,Rebranding ,Rita Manni,On-going,Critica,Logo e Brand Identity - Verifiche e mail Cliente,Call proposta - conferma,,,,7/01/2026,Martina Vallese,Valentina Temporelli
+TECNOMATIC,Audit Analytics,Cristiano Erbacci,On-going,,,,,,,7/01/2026,,
+TECNOMATIC,Finanziamento,Ennio Schiavoni,,,,Verifica - Fatturazione come w.academy ok,,,,7/01/2026,Martina Vallese,Valentina Temporelli
+LINVISIBILE,Audit Analtics + Looker Studio,Luca Ruggeri,On-going,,,,,,,7/01/2026,,
+LEVEL UP,Piattaforma Learning,Oriana Potente,On-going,,Kick-off,,,,,7/01/2026,Eugenia,
+CAME,Sito b2c,Mirko Soffia,Presale Prospect,,,,Feedback da Stefano,TR,,7/01/2026,Pier Molin,Stefano Benvenuti
+DAUNESTEP,Piattaforma Learning,Claudio Tonti,Presale Prospect,,Approfondimento tecnico fissato pe ril 26,Inviato macro piano,Ping,PR,,,Carlo Delbo,
+ITS Cosmo,Redesign Sito,Elisa Gori,Presale Prospect,,,Inviato doc  e macrostime,,TR,,,Mauizio Di Trani,Michel Ferrari
+ITS Cosmo,ADV,Marco Mora,Presale Prospect,,,Preventio inviato,,TR,,,,
+HAWORTH ,SHOWEFY,Antonio De Cicco,Presale Prospect,,,Firma a cura De Cicco,,TR,,,Marco,
