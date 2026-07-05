@@ -73,12 +73,7 @@ def _headers() -> dict:
 
 @st.cache_data(ttl=10)
 def load_data() -> pd.DataFrame:
-    token = _token()
-    resp = requests.get(
-        RAW_URL,
-        headers={"Authorization": f"token {token}"},
-        timeout=15,
-    )
+    resp = requests.get(RAW_URL, timeout=15)
     resp.raise_for_status()
     df = pd.read_csv(io.StringIO(resp.text))
 
