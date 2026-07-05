@@ -1,5 +1,16 @@
 import os
+import tomllib
 import streamlit as st
+
+RENDER_SECRETS = "/etc/secrets/secrets.toml"
+
+
+def _load_render_secrets() -> dict:
+    try:
+        with open(RENDER_SECRETS, "rb") as f:
+            return tomllib.load(f)
+    except Exception:
+        return {}
 
 
 def get_auth() -> dict:
@@ -13,17 +24,35 @@ def get_auth() -> dict:
             "dev_mode":       s.get("dev_mode", False),
         }
     except Exception:
+        pass
+
+    r = _load_render_secrets().get("auth", {})
+    if r:
         return {
-            "owner_username": os.environ.get("AUTH_OWNER_USERNAME", ""),
-            "owner_password": os.environ.get("AUTH_OWNER_PASSWORD", ""),
-            "resp_username":  os.environ.get("AUTH_RESP_USERNAME", ""),
-            "resp_password":  os.environ.get("AUTH_RESP_PASSWORD", ""),
-            "dev_mode":       os.environ.get("AUTH_DEV_MODE", "false").lower() == "true",
+            "owner_username": r.get("owner_username", ""),
+            "owner_password": r.get("owner_password", ""),
+            "resp_username":  r.get("resp_username", ""),
+            "resp_password":  r.get("resp_password", ""),
+            "dev_mode":       r.get("dev_mode", False),
         }
+
+    return {
+        "owner_username": os.environ.get("AUTH_OWNER_USERNAME", ""),
+        "owner_password": os.environ.get("AUTH_OWNER_PASSWORD", ""),
+        "resp_username":  os.environ.get("AUTH_RESP_USERNAME", ""),
+        "resp_password":  os.environ.get("AUTH_RESP_PASSWORD", ""),
+        "dev_mode":       os.environ.get("AUTH_DEV_MODE", "false").lower() == "true",
+    }
 
 
 def get_github_token() -> str:
     try:
         return st.secrets["github"]["token"]
     except Exception:
-        return os.environ.get("GITHUB_TOKEN", "")
+        pass
+
+    token = _load_render_secrets().get("github", {}).get("token", "")
+    if token:
+        return token
+
+    return os.environ.get("GITHUB_TOKEN", "").strip()
