@@ -333,11 +333,14 @@ def _do_save():
     other        = df.drop(filtered_index, errors="ignore").copy()
     edited_clean = edited.drop(columns=["_check", "Tipo_Icon", "Stato_Icon", "_row_idx"], errors="ignore")
     merged       = pd.concat([other, edited_clean], ignore_index=True)
-    save_data(merged)
-    st.session_state.editor_v     += 1
-    st.session_state.work_override = None
-    st.success("Salvato!")
-    st.rerun()
+    try:
+        save_data(merged)
+        st.session_state.editor_v     += 1
+        st.session_state.work_override = None
+        st.success("Salvato!")
+        st.rerun()
+    except Exception as e:
+        st.error(f"Errore salvataggio: {e}")
 
 if save_clicked:
     _do_save()
