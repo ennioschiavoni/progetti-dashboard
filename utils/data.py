@@ -69,7 +69,7 @@ def _token() -> str:
 
 
 def _headers() -> dict:
-    return {"Authorization": f"token {_token()}",
+    return {"Authorization": f"Bearer {_token()}",
             "Accept": "application/vnd.github.v3+json"}
 
 
