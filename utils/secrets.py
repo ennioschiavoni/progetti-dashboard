@@ -1,11 +1,17 @@
 import os
-import tomllib
 import streamlit as st
+
+try:
+    import tomllib
+except ImportError:
+    tomllib = None
 
 RENDER_SECRETS = "/etc/secrets/secrets.toml"
 
 
 def _load_render_secrets() -> dict:
+    if tomllib is None:
+        return {}
     try:
         with open(RENDER_SECRETS, "rb") as f:
             return tomllib.load(f)
