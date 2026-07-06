@@ -4,8 +4,8 @@ import pandas as pd
 import requests
 import streamlit as st
 
-GITHUB_REPO  = "ennioschiavoni/progetti-dashboard"
-GITHUB_PATH  = "data/progetti.csv"
+GITHUB_REPO  = "ennioschiavoni/progetti-data"
+GITHUB_PATH  = "progetti.csv"
 GITHUB_API   = f"https://api.github.com/repos/{GITHUB_REPO}/contents/{GITHUB_PATH}"
 RAW_URL      = f"https://raw.githubusercontent.com/{GITHUB_REPO}/main/{GITHUB_PATH}"
 
@@ -75,10 +75,9 @@ def _headers() -> dict:
 
 @st.cache_data(ttl=10)
 def load_data() -> pd.DataFrame:
-    resp = requests.get(GITHUB_API, headers=_headers(), timeout=15)
+    resp = requests.get(RAW_URL, timeout=15)
     resp.raise_for_status()
-    content = base64.b64decode(resp.json()["content"]).decode("utf-8")
-    df = pd.read_csv(io.StringIO(content))
+    df = pd.read_csv(io.StringIO(resp.text))
 
     df["Cliente"] = df["Cliente"].ffill()
     df["Resp.Progetto"] = df["Resp.Progetto"].replace(RESP_ALIASES)
