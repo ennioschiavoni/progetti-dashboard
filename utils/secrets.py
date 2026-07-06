@@ -53,6 +53,10 @@ def get_auth() -> dict:
 
 def get_github_token() -> str:
     try:
+        return st.secrets["github_pat"]["token"]
+    except Exception:
+        pass
+    try:
         return st.secrets["github"]["token"]
     except Exception:
         pass
