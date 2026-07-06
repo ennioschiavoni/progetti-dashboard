@@ -18,6 +18,11 @@ if not st.session_state.get("logged_in"):
 if st.session_state.get("role") != "owner":
     st.switch_page("pages/1_Dashboard.py")
 
+import os
+if not os.path.exists(".streamlit/secrets.toml"):
+    st.info("✏️ La pagina Modifica è disponibile solo in locale (localhost:8502).\n\nPer modificare i dati, apri l'app sul tuo Mac.")
+    st.stop()
+
 role      = st.session_state.role
 resp_name = st.session_state.resp_name
 
