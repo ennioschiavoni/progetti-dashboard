@@ -100,25 +100,28 @@ def load_data() -> pd.DataFrame:
 
 
 def save_data(df: pd.DataFrame):
+    import subprocess, tempfile, os, shutil
     st.cache_data.clear()
 
     save_df = df.drop(columns=["Tipo_Icon", "Stato_Icon", "_row_idx", "_check"],
                       errors="ignore").copy()
 
-    csv_content = save_df.to_csv(index=False)
-    csv_b64 = base64.b64encode(csv_content.encode()).decode()
+    token = _token()
+    repo_url = f"https://{token}@github.com/{GITHUB_REPO}.git"
 
-    # GET senza auth: repo pubblico, non serve token per leggere lo SHA
-    meta = requests.get(GITHUB_API, timeout=10)
-    meta.raise_for_status()
-    sha = meta.json().get("sha", "")
-
-    payload = {
-        "message": "Aggiornamento dati progetti",
-        "content": csv_b64,
-        "sha": sha,
-        "branch": "main",
-    }
-    r = requests.put(GITHUB_API, headers=_headers(), json=payload, timeout=20)
-    if not r.ok:
-        raise Exception(f"GitHub PUT {r.status_code}: {r.json().get('message','?')}")
+    tmpdir = tempfile.mkdtemp()
+    try:
+        subprocess.run(
+            ["git", "clone", "--depth=1", repo_url, tmpdir],
+            check=True, capture_output=True, timeout=60
+        )
+        save_df.to_csv(os.path.join(tmpdir, GITHUB_PATH), index=False)
+        subprocess.run(["git", "-C", tmpdir, "config", "user.email", "app@streamlit.io"], check=True, capture_output=True)
+        subprocess.run(["git", "-C", tmpdir, "config", "user.name", "Streamlit App"], check=True, capture_output=True)
+        subprocess.run(["git", "-C", tmpdir, "add", GITHUB_PATH], check=True, capture_output=True)
+        subprocess.run(["git", "-C", tmpdir, "commit", "-m", "Aggiornamento dati progetti"], check=True, capture_output=True)
+        result = subprocess.run(["git", "-C", tmpdir, "push"], check=True, capture_output=True, timeout=60)
+    except subprocess.CalledProcessError as e:
+        raise Exception(f"Git error: {e.stderr.decode()[:300] if e.stderr else str(e)}")
+    finally:
+        shutil.rmtree(tmpdir, ignore_errors=True)
