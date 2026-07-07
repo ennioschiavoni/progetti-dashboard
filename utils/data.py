@@ -116,4 +116,5 @@ def save_data(df: pd.DataFrame):
         "branch": "main",
     }
     r = requests.put(GITHUB_API, headers=_headers(), json=payload, timeout=20)
-    r.raise_for_status()
+    if not r.ok:
+        raise Exception(f"GitHub {r.status_code}: {r.json().get('message','?')} | GET_sha={bool(sha)} | GET_status={meta.status_code}")
