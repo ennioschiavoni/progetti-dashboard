@@ -345,7 +345,9 @@ def _do_save():
         st.success("Salvato!")
         st.rerun()
     except Exception as e:
-        st.error(f"Errore salvataggio: {e}")
+        from utils.secrets import get_github_token
+        t = get_github_token()
+        st.error(f"Errore salvataggio (token={t[:12] if t else 'VUOTO'}): {e}")
 
 if save_clicked:
     _do_save()
