@@ -105,8 +105,9 @@ def save_data(df: pd.DataFrame):
     csv_content = save_df.to_csv(index=False)
     csv_b64 = base64.b64encode(csv_content.encode()).decode()
 
-    # Recupera SHA del file attuale (necessario per aggiornarlo via API)
-    meta = requests.get(GITHUB_API, headers=_headers(), timeout=10)
+    # GET senza auth: repo pubblico, non serve token per leggere lo SHA
+    meta = requests.get(GITHUB_API, timeout=10)
+    meta.raise_for_status()
     sha = meta.json().get("sha", "")
 
     payload = {
@@ -117,4 +118,4 @@ def save_data(df: pd.DataFrame):
     }
     r = requests.put(GITHUB_API, headers=_headers(), json=payload, timeout=20)
     if not r.ok:
-        raise Exception(f"GitHub {r.status_code}: {r.json().get('message','?')} | GET_sha={bool(sha)} | GET_status={meta.status_code}")
+        raise Exception(f"GitHub PUT {r.status_code}: {r.json().get('message','?')}")
