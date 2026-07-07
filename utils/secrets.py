@@ -52,25 +52,17 @@ def get_auth() -> dict:
 
 
 def get_github_token() -> str:
-    # GH_WRITE_TOKEN evita conflitti con GITHUB_TOKEN iniettato da Streamlit Cloud
-    for key in ("GH_WRITE_TOKEN", "GITHUB_TOKEN"):
-        try:
-            v = st.secrets[key]
-            if v:
-                return v
-        except Exception:
-            pass
+    # Usa SOLO GH_WRITE_TOKEN - mai GITHUB_TOKEN (riservato da Streamlit Cloud)
     try:
-        return st.secrets["github_pat"]["token"]
+        v = st.secrets["GH_WRITE_TOKEN"]
+        if v:
+            return str(v).strip()
     except Exception:
         pass
     try:
-        return st.secrets["github"]["token"]
+        v = st.secrets["github"]["token"]
+        if v:
+            return str(v).strip()
     except Exception:
         pass
-
-    token = _load_render_secrets().get("github", {}).get("token", "")
-    if token:
-        return token
-
-    return os.environ.get("GH_WRITE_TOKEN", os.environ.get("GITHUB_TOKEN", "")).strip()
+    return os.environ.get("GH_WRITE_TOKEN", "").strip()
