@@ -119,7 +119,7 @@ def save_data(df: pd.DataFrame):
     tmpdir = tempfile.mkdtemp()
     try:
         subprocess.run(
-            ["git", "clone", "--depth=1", repo_url, tmpdir],
+            ["git", "-c", "credential.helper=", "clone", "--depth=1", repo_url, tmpdir],
             check=True, capture_output=True, timeout=60, env=git_env
         )
         save_df.to_csv(os.path.join(tmpdir, GITHUB_PATH), index=False)
@@ -127,7 +127,7 @@ def save_data(df: pd.DataFrame):
         subprocess.run(["git", "-C", tmpdir, "config", "user.name", "Streamlit App"], check=True, capture_output=True)
         subprocess.run(["git", "-C", tmpdir, "add", GITHUB_PATH], check=True, capture_output=True)
         subprocess.run(["git", "-C", tmpdir, "commit", "-m", "Aggiornamento dati progetti"], check=True, capture_output=True)
-        subprocess.run(["git", "-C", tmpdir, "push"], check=True, capture_output=True, timeout=60, env=git_env)
+        subprocess.run(["git", "-c", "credential.helper=", "-C", tmpdir, "push"], check=True, capture_output=True, timeout=60, env=git_env)
     except subprocess.CalledProcessError as e:
         raise Exception(f"Git error: {e.stderr.decode()[:300] if e.stderr else str(e)}")
     finally:
