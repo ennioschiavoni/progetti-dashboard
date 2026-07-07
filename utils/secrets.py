@@ -52,11 +52,26 @@ def get_auth() -> dict:
 
 
 def get_github_token() -> str:
-    # Usa SOLO GH_WRITE_TOKEN - mai GITHUB_TOKEN (riservato da Streamlit Cloud)
+    import base64, unicodedata
+
+    def _decode_b64(v: str) -> str:
+        # Normalizza Unicode homoglifi, poi decodifica base64
+        v = unicodedata.normalize("NFKC", str(v).strip())
+        v = v.encode("ascii", errors="ignore").decode("ascii")
+        return base64.b64decode(v).decode("ascii")
+
+    # Prova prima GH_TOKEN_B64 (base64, robusto a copia-incolla)
+    try:
+        v = st.secrets["GH_TOKEN_B64"]
+        if v:
+            return _decode_b64(v)
+    except Exception:
+        pass
+    # Fallback: GH_WRITE_TOKEN raw
     try:
         v = st.secrets["GH_WRITE_TOKEN"]
         if v:
-            return str(v).strip()
+            return unicodedata.normalize("NFKC", str(v).strip()).encode("ascii", errors="ignore").decode("ascii")
     except Exception:
         pass
     try:
