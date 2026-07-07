@@ -106,6 +106,9 @@ def save_data(df: pd.DataFrame):
     save_df = df.drop(columns=["Tipo_Icon", "Stato_Icon", "_row_idx", "_check"],
                       errors="ignore").copy()
 
+    if len(save_df) < 50:
+        raise Exception(f"Sicurezza: il CSV ha solo {len(save_df)} righe — salvataggio annullato per evitare perdita dati.")
+
     token = _token()
     repo_url = f"https://{token}@github.com/{GITHUB_REPO}.git"
 
