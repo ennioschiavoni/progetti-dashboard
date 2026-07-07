@@ -110,20 +110,24 @@ def save_data(df: pd.DataFrame):
         raise Exception(f"Sicurezza: il CSV ha solo {len(save_df)} righe — salvataggio annullato per evitare perdita dati.")
 
     token = _token()
-    repo_url = f"https://{token}@github.com/{GITHUB_REPO}.git"
+    repo_url = f"https://oauth2:{token}@github.com/{GITHUB_REPO}.git"
+
+    git_env = os.environ.copy()
+    git_env["GIT_TERMINAL_PROMPT"] = "0"
+    git_env["GIT_ASKPASS"] = "echo"
 
     tmpdir = tempfile.mkdtemp()
     try:
         subprocess.run(
             ["git", "clone", "--depth=1", repo_url, tmpdir],
-            check=True, capture_output=True, timeout=60
+            check=True, capture_output=True, timeout=60, env=git_env
         )
         save_df.to_csv(os.path.join(tmpdir, GITHUB_PATH), index=False)
         subprocess.run(["git", "-C", tmpdir, "config", "user.email", "app@streamlit.io"], check=True, capture_output=True)
         subprocess.run(["git", "-C", tmpdir, "config", "user.name", "Streamlit App"], check=True, capture_output=True)
         subprocess.run(["git", "-C", tmpdir, "add", GITHUB_PATH], check=True, capture_output=True)
         subprocess.run(["git", "-C", tmpdir, "commit", "-m", "Aggiornamento dati progetti"], check=True, capture_output=True)
-        result = subprocess.run(["git", "-C", tmpdir, "push"], check=True, capture_output=True, timeout=60)
+        subprocess.run(["git", "-C", tmpdir, "push"], check=True, capture_output=True, timeout=60, env=git_env)
     except subprocess.CalledProcessError as e:
         raise Exception(f"Git error: {e.stderr.decode()[:300] if e.stderr else str(e)}")
     finally:
