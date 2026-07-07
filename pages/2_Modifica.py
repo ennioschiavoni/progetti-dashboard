@@ -166,7 +166,7 @@ display_cols = ["Tipo_Icon", "Stato_Icon",
 
 if st.session_state.work_override is not None:
     work = st.session_state.work_override.copy()
-    # NON azzerare: work_override persiste finché non si salva/resetta/cambia filtro
+    st.session_state.work_override = None
     work["Tipo_Icon"]  = work["Tipo Attività"].map(TIPO_COLORS).fillna("⚪")
     work["Stato_Icon"] = work["Stato Attività"].map(STATO_COLORS).fillna("⚪")
 else:
@@ -293,6 +293,11 @@ if has_sel:
         st.session_state.sel_info = new_sel
 else:
     st.session_state.sel_info = None
+
+# Sincronizza work_override con lo stato attuale della griglia dopo ogni render
+# (sopravvive al rerun successivo preservando righe aggiunte ed edit)
+if grid_response.data is not None and not save_clicked:
+    st.session_state.work_override = grid_response.data.copy()
 
 # ── Azione pendente ───────────────────────────────────────────────────────────
 edited  = grid_response.data
