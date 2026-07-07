@@ -110,7 +110,7 @@ def save_data(df: pd.DataFrame):
         raise Exception(f"Sicurezza: il CSV ha solo {len(save_df)} righe — salvataggio annullato per evitare perdita dati.")
 
     token = _token()
-    repo_url = f"https://oauth2:{token}@github.com/{GITHUB_REPO}.git"
+    repo_url = f"https://ennioschiavoni:{token}@github.com/{GITHUB_REPO}.git"
 
     git_env = os.environ.copy()
     git_env["GIT_TERMINAL_PROMPT"] = "0"
