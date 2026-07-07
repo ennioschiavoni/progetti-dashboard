@@ -347,7 +347,9 @@ def _do_save():
     except Exception as e:
         from utils.secrets import get_github_token
         t = get_github_token()
-        st.error(f"Errore salvataggio (len={len(t)}, token={t[:12] if t else 'VUOTO'}): {e}")
+        import hashlib
+        h = hashlib.md5(t.encode()).hexdigest()[:8] if t else "VUOTO"
+        st.error(f"Errore salvataggio (len={len(t)}, md5={h}): {e}")
 
 if save_clicked:
     _do_save()
