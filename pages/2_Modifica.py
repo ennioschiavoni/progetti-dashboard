@@ -57,6 +57,7 @@ def _reset_mod():
     st.session_state.sort_col = "Ordina per Cliente"
     st.session_state.sort_dir = "Ordina A → Z"
     st.session_state.sel_info = None
+    st.session_state.work_override = None
 
 fc1, fc2, fc3, fc4, _ = st.columns([2, 2, 2, 2, 4])
 with fc1:
@@ -165,8 +166,7 @@ display_cols = ["Tipo_Icon", "Stato_Icon",
 
 if st.session_state.work_override is not None:
     work = st.session_state.work_override.copy()
-    st.session_state.work_override = None
-    # Ricalcola icone nel caso Tipo/Stato siano stati modificati
+    # NON azzerare: work_override persiste finché non si salva/resetta/cambia filtro
     work["Tipo_Icon"]  = work["Tipo Attività"].map(TIPO_COLORS).fillna("⚪")
     work["Stato_Icon"] = work["Stato Attività"].map(STATO_COLORS).fillna("⚪")
 else:
@@ -284,8 +284,10 @@ if has_sel:
     sp      = int(sel_row.get("_row_idx", 0))
     new_sel = {"pos": sp, "label": f"{sel_row.get('Cliente', '')} — {sel_row.get('Attività', '')}"}
     if st.session_state.sel_info is None:
-        st.session_state.sel_info      = new_sel
-        st.session_state.work_override = grid_response.data.copy()
+        st.session_state.sel_info = new_sel
+        # Cattura stato griglia solo se non c'è già un work_override (es. dopo insert)
+        if st.session_state.work_override is None:
+            st.session_state.work_override = grid_response.data.copy()
         st.rerun()
     else:
         st.session_state.sel_info = new_sel
