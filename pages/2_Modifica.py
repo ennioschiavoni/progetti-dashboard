@@ -346,10 +346,12 @@ def _do_save():
         st.rerun()
     except Exception as e:
         from utils.secrets import get_github_token
-        t = get_github_token()
-        import hashlib
-        h = hashlib.md5(t.encode()).hexdigest()[:8] if t else "VUOTO"
-        st.error(f"Errore salvataggio (len={len(t)}, md5={h}): {e}")
+        import hashlib, unicodedata
+        t_raw = get_github_token()
+        t_norm = unicodedata.normalize("NFKC", t_raw).encode("ascii", errors="ignore").decode("ascii")
+        h_raw  = hashlib.md5(t_raw.encode()).hexdigest()[:8] if t_raw else "VUOTO"
+        h_norm = hashlib.md5(t_norm.encode()).hexdigest()[:8] if t_norm else "VUOTO"
+        st.error(f"Errore salvataggio (raw={h_raw} len={len(t_raw)}, norm={h_norm} len={len(t_norm)}): {e}")
 
 if save_clicked:
     _do_save()

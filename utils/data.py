@@ -63,8 +63,11 @@ STATO_COLORS = {
 
 
 def _token() -> str:
+    import unicodedata
     from utils.secrets import get_github_token
     t = get_github_token().strip()
+    # NFKC normalizza homoglifi Unicode (es. ０ fullwidth → 0 ASCII)
+    t = unicodedata.normalize("NFKC", t)
     return t.encode("ascii", errors="ignore").decode("ascii")
 
 
