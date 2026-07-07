@@ -69,7 +69,10 @@ def _token() -> str:
 
 
 def _headers() -> dict:
-    return {"Authorization": f"Bearer {_token()}",
+    import base64
+    t = _token()
+    basic = base64.b64encode(f"ennioschiavoni:{t}".encode("ascii")).decode("ascii")
+    return {"Authorization": f"Basic {basic}",
             "Accept": "application/vnd.github.v3+json"}
 
 
