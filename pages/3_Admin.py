@@ -5,6 +5,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent.parent))
 from utils.data import load_data, save_data
+from utils.excel_sync import excel_disponibile, excel_to_df, csv_to_excel, EXCEL_PATH
 
 st.set_page_config(page_title="Amministrazione", page_icon="⚙️", layout="wide")
 
@@ -31,7 +32,7 @@ df = load_data()
 st.markdown("## ⚙️ Amministrazione")
 st.markdown("---")
 
-tab1, tab2 = st.tabs(["➕ Aggiungi Attività", "🗑️ Elimina Attività"])
+tab1, tab2, tab3 = st.tabs(["➕ Aggiungi Attività", "🗑️ Elimina Attività", "📊 Sync Excel"])
 
 with tab1:
     st.markdown("### Nuova Attività")
@@ -91,3 +92,58 @@ with tab2:
         save_data(df)
         st.success("Attività eliminata.")
         st.rerun()
+
+with tab3:
+    st.markdown("### 📊 Sincronizzazione Excel ↔ App")
+
+    if not excel_disponibile():
+        st.info("Questa funzione è disponibile solo su localhost con Dropbox sincronizzato.")
+        st.caption(f"Percorso atteso: `{EXCEL_PATH}`")
+    else:
+        st.caption(f"File: `{EXCEL_PATH.name}`")
+        st.markdown("---")
+
+        # ── Excel → CSV ───────────────────────────────────────────────────────
+        st.markdown("#### 📥 Importa da Excel → App")
+        st.warning(
+            "**Attenzione:** sovrascrive tutti i dati dell'app con quelli dell'Excel. "
+            "Le modifiche fatte solo nell'app (non presenti in Excel) andranno perse."
+        )
+        col1, col2 = st.columns([1, 3])
+        with col1:
+            preview_xls = st.button("👁 Anteprima", key="prev_xls")
+        with col2:
+            import_xls = st.button("📥 Importa da Excel", type="primary", key="imp_xls")
+
+        if preview_xls:
+            try:
+                xls_df = excel_to_df()
+                st.info(f"Excel: **{len(xls_df)} righe** — App attuale: **{len(df)} righe**")
+                st.dataframe(xls_df.head(10), use_container_width=True)
+            except Exception as e:
+                st.error(f"Errore lettura Excel: {e}")
+
+        if import_xls:
+            try:
+                xls_df = excel_to_df()
+                save_data(xls_df)
+                st.success(f"Importate {len(xls_df)} righe da Excel. App aggiornata.")
+                st.rerun()
+            except Exception as e:
+                st.error(f"Errore importazione: {e}")
+
+        st.markdown("---")
+
+        # ── CSV → Excel ───────────────────────────────────────────────────────
+        st.markdown("#### 📤 Sincronizza App → Excel")
+        st.info(
+            "Aggiorna le righe esistenti nell'Excel con i dati dell'app. "
+            "Le righe nuove (aggiunte nell'app ma non in Excel) vengono aggiunte in fondo. "
+            "La formattazione Excel è preservata."
+        )
+        if st.button("📤 Sincronizza verso Excel", type="primary", key="sync_xls"):
+            try:
+                updated, added = csv_to_excel(df)
+                st.success(f"Excel aggiornato: **{updated} righe aggiornate**, **{added} righe aggiunte**.")
+            except Exception as e:
+                st.error(f"Errore sincronizzazione: {e}")
